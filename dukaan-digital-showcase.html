@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dukaan Digital — Websites for Local Shops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16213A;
+    --navy-2:#1F2E4D;
+    --gold:#E4A63A;
+    --gold-dim:#F0C87A;
+    --rust:#C1543C;
+    --paper:#EFEFE7;
+    --paper-2:#FFFFFF;
+    --ink:#1B2130;
+    --ink-soft:#5A6178;
+    --line:rgba(27,33,48,0.13);
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Zilla Slab',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--navy);
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  section{padding:96px 0;}
+  @media(max-width:720px){section{padding:64px 0;}}
+
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(239,239,231,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Zilla Slab',serif;font-weight:700;font-size:20px;color:var(--navy);
+  }
+  .logo-mark{
+    width:34px;height:34px;border-radius:8px;
+    background:var(--navy);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:500;
+    transform:rotate(-4deg);
+  }
+  .nav-links{display:flex;gap:32px;align-items:center;}
+  .nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-soft);transition:color .15s;}
+  .nav-links a:hover{color:var(--navy);}
+  .nav-cta{
+    background:var(--navy);color:var(--paper-2);
+    padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;
+    transition:background .15s;
+  }
+  .nav-cta:hover{background:var(--navy-2);}
+  @media(max-width:820px){.nav-links a:not(.nav-cta){display:none;}}
+
+  /* HERO */
+  .hero{padding-top:76px;padding-bottom:0;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center;}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+
+  /* hero visual */
+  .hero-visual{position:relative;padding:20px 10px 40px;}
+  .hv-browser{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 30px 60px rgba(22,33,58,.18);
+    transform:rotate(-3deg);overflow:hidden;
+  }
+  .hv-bar{display:flex;gap:6px;padding:11px 14px;background:#E4E1D6;}
+  .hv-bar span{width:9px;height:9px;border-radius:50%;background:#C9C5B6;}
+  .hv-body{padding:20px;display:grid;gap:12px;}
+  .hv-hero{height:70px;border-radius:8px;background:linear-gradient(120deg,var(--gold),var(--rust));}
+  .hv-row{display:flex;gap:10px;}
+  .hv-row div{flex:1;height:52px;border-radius:8px;background:#EDEBE3;}
+  .hv-line{height:10px;border-radius:4px;background:#EDEBE3;}
+  .hv-line.short{width:55%;}
+  .hv-badge{
+    position:absolute;background:var(--navy);color:var(--gold-dim);
+    font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;
+    padding:9px 16px;border-radius:999px;box-shadow:0 12px 24px rgba(22,33,58,.28);
+    display:flex;align-items:center;gap:8px;
+  }
+  .hv-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);}
+  .hv-badge.b1{top:8px;right:-6px;transform:rotate(4deg);}
+  .hv-badge.b2{bottom:26px;left:-16px;transform:rotate(-3deg);background:var(--paper-2);color:var(--ink);border:1px solid var(--line);box-shadow:0 14px 28px rgba(22,33,58,.14);}
+  .hv-badge.b2::before{background:var(--rust);}
+  .hv-chat{
+    position:absolute;bottom:-18px;right:14px;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:14px 14px 14px 4px;
+    padding:12px 16px;max-width:210px;box-shadow:0 16px 30px rgba(22,33,58,.16);
+    font-size:13px;color:var(--ink-soft);
+  }
+  .hv-chat b{color:var(--navy);}
+  @media(max-width:900px){.hero-visual{max-width:420px;margin:0 auto;padding:20px 10px 60px;}}
+  @media(max-width:480px){.hv-badge,.hv-chat{display:none;}}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.06em;
+    color:var(--rust);text-transform:uppercase;margin-bottom:20px;
+  }
+  .eyebrow::before{content:"";width:8px;height:8px;background:var(--rust);border-radius:50%;display:inline-block;}
+  .hero h1{
+    font-size:clamp(38px,5.4vw,64px);
+    line-height:1.05;
+    max-width:15ch;
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:italic;color:var(--rust);}
+  .hero p.lead{
+    font-size:18px;color:var(--ink-soft);max-width:52ch;margin-bottom:34px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px;}
+  .btn{
+    padding:14px 26px;border-radius:999px;font-weight:600;font-size:15px;
+    display:inline-flex;align-items:center;gap:8px;transition:transform .15s, box-shadow .15s;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--navy);color:var(--paper-2);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(22,33,58,.25);}
+  .btn-ghost{border-color:var(--ink);color:var(--ink);}
+  .btn-ghost:hover{transform:translateY(-2px);background:var(--paper-2);}
+
+  /* marquee */
+  .marquee-wrap{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;background:var(--navy);
+  }
+  .marquee{
+    display:flex;white-space:nowrap;
+    animation:scroll 26s linear infinite;
+    padding:16px 0;
+  }
+  .marquee span{
+    font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--gold-dim);
+    padding:0 26px;border-right:1px solid rgba(228,166,58,0.25);
+    display:inline-block;
+  }
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion:reduce){.marquee{animation:none;}}
+
+  /* stats ledger */
+  .ledger{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:-1px;
+  }
+  .ledger div{padding:32px 28px;border-right:1px solid var(--line);}
+  .ledger div:last-child{border-right:none;}
+  .ledger .num{font-family:'IBM Plex Mono',monospace;font-size:30px;color:var(--rust);font-weight:500;}
+  .ledger .lbl{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  @media(max-width:680px){.ledger{grid-template-columns:1fr;}.ledger div{border-right:none;border-bottom:1px solid var(--line);}.ledger div:last-child{border-bottom:none;}}
+
+  /* section headers */
+  .sec-head{max-width:640px;margin-bottom:52px;}
+  .sec-head .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--rust);
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;display:block;
+  }
+  .sec-head h2{font-size:clamp(28px,3.4vw,38px);margin-bottom:12px;}
+  .sec-head p{color:var(--ink-soft);font-size:16px;}
+
+  /* services */
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media(max-width:980px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.services-grid{grid-template-columns:1fr;}}
+  .service-card{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px 24px;transition:transform .18s, box-shadow .18s;
+  }
+  .service-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(22,33,58,.1);}
+  .service-icon{
+    width:42px;height:42px;border-radius:10px;background:var(--navy);color:var(--gold);
+    display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:18px;
+  }
+  .service-card h3{font-size:18px;margin-bottom:8px;}
+  .service-card p{font-size:14.5px;color:var(--ink-soft);}
+
+  /* PORTFOLIO */
+  .portfolio-note{font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:-32px;margin-bottom:44px;}
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;}
+  @media(max-width:780px){.work-grid{grid-template-columns:1fr;}}
+  .work-card{
+    position:relative;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;transition:transform .18s, box-shadow .18s;
+  }
+  .work-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(22,33,58,.14);}
+  .mock-frame{background:#EDEBE3;padding:14px;}
+  .mock-browser{
+    background:var(--paper-2);border-radius:8px;overflow:hidden;border:1px solid var(--line);
+  }
+  .mock-bar{
+    display:flex;gap:6px;padding:9px 12px;background:#E4E1D6;
+  }
+  .mock-bar span{width:8px;height:8px;border-radius:50%;background:#C9C5B6;}
+  .mock-body{padding:16px;display:grid;gap:8px;}
+  .mock-hero{height:46px;border-radius:6px;}
+  .mock-row{display:flex;gap:8px;}
+  .mock-row div{height:30px;flex:1;border-radius:6px;background:#EDEBE3;}
+  .stamp{
+    position:absolute;top:16px;right:16px;
+    width:70px;height:70px;border-radius:50%;
+    border:2px solid var(--rust);color:var(--rust);
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;text-transform:uppercase;
+    transform:rotate(-14deg);letter-spacing:.02em;
+    background:rgba(255,255,255,0.85);
+  }
+  .stamp.progress{border-color:var(--ink-soft);color:var(--ink-soft);}
+  .work-info{padding:22px 22px 24px;}
+  .work-info .cat{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--rust);text-transform:uppercase;letter-spacing:.05em;}
+  .work-info h3{font-size:19px;margin:6px 0 8px;}
+  .work-info p{font-size:14px;color:var(--ink-soft);}
+
+  /* process */
+  .process-list{display:flex;flex-direction:column;}
+  .process-item{
+    display:grid;grid-template-columns:70px 1fr;gap:24px;
+    padding:26px 0;border-top:1px solid var(--line);
+  }
+  .process-item:last-child{border-bottom:1px solid var(--line);}
+  .process-item .step-num{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:15px;padding-top:4px;}
+  .process-item h3{font-size:19px;margin-bottom:6px;}
+  .process-item p{color:var(--ink-soft);font-size:15px;max-width:56ch;}
+
+  /* AI/ML edge */
+  .edge{
+    background:var(--navy);color:var(--paper);border-radius:20px;
+    padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+  }
+  @media(max-width:820px){.edge{grid-template-columns:1fr;padding:36px 26px;}}
+  .edge h2{color:var(--paper-2);}
+  .edge p{color:#BAC3D6;font-size:15.5px;margin-top:14px;}
+  .edge-list{list-style:none;display:flex;flex-direction:column;gap:16px;}
+  .edge-list li{display:flex;gap:12px;font-size:15px;color:#DCE1EC;}
+  .edge-list li::before{content:"→";color:var(--gold);font-weight:700;}
+
+  /* pricing */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:880px){.price-grid{grid-template-columns:1fr;}}
+  .price-card{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px 26px;display:flex;flex-direction:column;
+  }
+  .price-card.featured{border-color:var(--gold);box-shadow:0 14px 34px rgba(228,166,58,.18);position:relative;}
+  .price-card.featured::before{
+    content:"Most picked";position:absolute;top:-13px;left:26px;
+    background:var(--gold);color:var(--navy);font-size:11.5px;font-weight:700;
+    padding:4px 12px;border-radius:999px;font-family:'IBM Plex Mono',monospace;
+  }
+  .price-card h3{font-size:19px;margin-bottom:6px;}
+  .price-card .price{font-family:'IBM Plex Mono',monospace;font-size:26px;color:var(--rust);margin:10px 0 18px;}
+  .price-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px;flex:1;}
+  .price-card li{font-size:14px;color:var(--ink-soft);padding-left:18px;position:relative;}
+  .price-card li::before{content:"✓";position:absolute;left:0;color:var(--rust);font-weight:700;}
+
+  /* CTA / contact */
+  .cta-section{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:20px;
+    padding:64px 48px;text-align:center;
+  }
+  @media(max-width:600px){.cta-section{padding:44px 24px;}}
+  .cta-section h2{font-size:clamp(26px,4vw,36px);margin-bottom:14px;}
+  .cta-section p{color:var(--ink-soft);max-width:48ch;margin:0 auto 30px;}
+  .cta-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  footer{border-top:1px solid var(--line);padding:40px 0;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-inner .logo{font-size:16px;}
+  footer .fine{font-size:13px;color:var(--ink-soft);}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-mark">DD</span>Dukaan Digital</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact" class="nav-cta">Book a free demo</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Websites · Hosting · SEO — for local shops</span>
+      <h1>Every shop deserves a website as good as its <em>storefront.</em></h1>
+      <p class="lead">We're AI &amp; ML developers with 5 years building products — now we design, build, host and grow websites for local vendors, so you can be found online without hiring an in-house team.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-primary">See our work</a>
+        <a href="#contact" class="btn btn-ghost">Get a free mockup</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hv-browser">
+        <div class="hv-bar"><span></span><span></span><span></span></div>
+        <div class="hv-body">
+          <div class="hv-hero"></div>
+          <div class="hv-line"></div>
+          <div class="hv-line short"></div>
+          <div class="hv-row"><div></div><div></div><div></div></div>
+        </div>
+      </div>
+      <div class="hv-badge b1">● SEO ready</div>
+      <div class="hv-badge b2">Live in 10 days</div>
+      <div class="hv-chat"><b>Hi 👋</b> do you have this in blue, and can I pick it up today?</div>
+    </div>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>GROCERY</span><span>SALON &amp; SPA</span><span>RESTAURANTS</span><span>TAILORING</span><span>ELECTRONICS</span><span>PHARMACY</span><span>BAKERY</span><span>HARDWARE</span><span>BOUTIQUE</span><span>REPAIR SHOPS</span>
+      <span>GROCERY</span><span>SALON &amp; SPA</span><span>RESTAURANTS</span><span>TAILORING</span><span>ELECTRONICS</span><span>PHARMACY</span><span>BAKERY</span><span>HARDWARE</span><span>BOUTIQUE</span><span>REPAIR SHOPS</span>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="ledger reveal">
+      <div><div class="num mono">5+</div><div class="lbl">Years building AI &amp; ML products</div></div>
+      <div><div class="num mono">10 days</div><div class="lbl">Average time from kickoff to live site</div></div>
+      <div><div class="num mono">100%</div><div class="lbl">Sites launch with hosting &amp; SEO set up</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">What we do</span>
+      <h2>Everything a shop needs to sell online</h2>
+      <p>One team, one bill, no chasing three different freelancers.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal"><div class="service-icon">◆</div><h3>Website design</h3><p>A site built around your shop and products — not a generic template.</p></div>
+      <div class="service-card reveal"><div class="service-icon">⌘</div><h3>Hosting &amp; care</h3><p>We host it, patch it, and keep it fast and online — you don't touch a server.</p></div>
+      <div class="service-card reveal"><div class="service-icon">◎</div><h3>Local SEO</h3><p>Show up when someone nearby searches for what you sell.</p></div>
+      <div class="service-card reveal"><div class="service-icon">✦</div><h3>Smart add-ons</h3><p>Chat assistants, smart search, and automation — built on our ML background.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Portfolio</span>
+      <h2>A few shops we've taken online</h2>
+      <p>Sample builds showing the range we cover — retail, food, and services.</p>
+    </div>
+    <p class="portfolio-note">Swap these in for real client sites as you launch — the layout is built to hold logos, screenshots, and links.</p>
+    <div class="work-grid">
+
+      <div class="work-card reveal">
+        <div class="stamp">Live<br>Since 2025</div>
+        <div class="mock-frame"><div class="mock-browser">
+          <div class="mock-bar"><span></span><span></span><span></span></div>
+          <div class="mock-body">
+            <div class="mock-hero" style="background:linear-gradient(120deg,#E4A63A,#C1543C);"></div>
+            <div class="mock-row"><div></div><div></div><div></div></div>
+          </div>
+        </div></div>
+        <div class="work-info">
+          <span class="cat">Grocery &amp; Retail</span>
+          <h3>Patel Grocery Mart</h3>
+          <p>Product catalog, WhatsApp ordering link, and a map to the store front and center.</p>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="stamp">Live<br>Since 2025</div>
+        <div class="mock-frame"><div class="mock-browser">
+          <div class="mock-bar"><span></span><span></span><span></span></div>
+          <div class="mock-body">
+            <div class="mock-hero" style="background:linear-gradient(120deg,#16213A,#C1543C);"></div>
+            <div class="mock-row"><div></div><div></div><div></div></div>
+          </div>
+        </div></div>
+        <div class="work-info">
+          <span class="cat">Restaurant</span>
+          <h3>Spice Route Kitchen</h3>
+          <p>Menu, table booking form, and photos that load fast even on slow mobile data.</p>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="stamp">Live<br>Since 2026</div>
+        <div class="mock-frame"><div class="mock-browser">
+          <div class="mock-bar"><span></span><span></span><span></span></div>
+          <div class="mock-body">
+            <div class="mock-hero" style="background:linear-gradient(120deg,#E4A63A,#16213A);"></div>
+            <div class="mock-row"><div></div><div></div><div></div></div>
+          </div>
+        </div></div>
+        <div class="work-info">
+          <span class="cat">Salon &amp; Spa</span>
+          <h3>Glow Salon &amp; Spa</h3>
+          <p>Service list with prices, and online appointment booking built in.</p>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="stamp progress">In<br>Progress</div>
+        <div class="mock-frame"><div class="mock-browser">
+          <div class="mock-bar"><span></span><span></span><span></span></div>
+          <div class="mock-body">
+            <div class="mock-hero" style="background:linear-gradient(120deg,#5A6178,#16213A);"></div>
+            <div class="mock-row"><div></div><div></div><div></div></div>
+          </div>
+        </div></div>
+        <div class="work-info">
+          <span class="cat">Electronics &amp; Repair</span>
+          <h3>Sharma Electronics</h3>
+          <p>Repair status lookup and a stock list customers can check before visiting.</p>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="stamp">Live<br>Since 2026</div>
+        <div class="mock-frame"><div class="mock-browser">
+          <div class="mock-bar"><span></span><span></span><span></span></div>
+          <div class="mock-body">
+            <div class="mock-hero" style="background:linear-gradient(120deg,#F0C87A,#C1543C);"></div>
+            <div class="mock-row"><div></div><div></div><div></div></div>
+          </div>
+        </div></div>
+        <div class="work-info">
+          <span class="cat">Skincare &amp; Beauty</span>
+          <h3>Bloom Skincare Studio</h3>
+          <p>Treatment menu, before/after gallery, and online appointment booking.</p>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="stamp">Live<br>Since 2026</div>
+        <div class="mock-frame"><div class="mock-browser">
+          <div class="mock-bar"><span></span><span></span><span></span></div>
+          <div class="mock-body">
+            <div class="mock-hero" style="background:linear-gradient(120deg,#16213A,#5A6178);"></div>
+            <div class="mock-row"><div></div><div></div><div></div></div>
+          </div>
+        </div></div>
+        <div class="work-info">
+          <span class="cat">Healthcare &amp; Dentist</span>
+          <h3>Dr. Mehta Dental Care</h3>
+          <p>Services overview, insurance info, and an easy appointment request form.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">How it works</span>
+      <h2>From first call to live site</h2>
+      <p>Five steps, always in this order — nothing gets built before we understand the shop.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item reveal"><div class="step-num">01</div><div><h3>Discover</h3><p>We learn your shop, your customers, and what you actually need the site to do.</p></div></div>
+      <div class="process-item reveal"><div class="step-num">02</div><div><h3>Design</h3><p>A mobile-first layout built around your brand and products — not a stock theme.</p></div></div>
+      <div class="process-item reveal"><div class="step-num">03</div><div><h3>Build</h3><p>A real, fast website with hosting wired in from day one.</p></div></div>
+      <div class="process-item reveal"><div class="step-num">04</div><div><h3>Launch</h3><p>Go live, connect your domain, and set up the SEO basics so you're searchable.</p></div></div>
+      <div class="process-item reveal"><div class="step-num">05</div><div><h3>Grow</h3><p>Ongoing tweaks, SEO check-ins, and content support as the shop grows.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="edge reveal">
+      <div>
+        <span class="tag" style="color:var(--gold);">Why us</span>
+        <h2>Built by AI &amp; ML developers, not just designers</h2>
+        <p>Five years building AI and ML products means your site doesn't stop at "looks good" — we bring the same tools we use in production work into every build.</p>
+      </div>
+      <ul class="edge-list">
+        <li>Chat assistants that answer product and store questions for you</li>
+        <li>Smart search that understands what a customer is actually looking for</li>
+        <li>SEO decisions backed by data, not guesswork</li>
+        <li>Automation for orders, bookings, and repeat customer follow-ups</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Pricing</span>
+      <h2>Simple packages, no hidden costs</h2>
+      <p>Every plan includes hosting. Custom projects are priced based on the client's specific requirements.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <h3>Starter</h3>
+        <div class="price mono">₹5,000</div>
+        <ul>
+          <li>Single-page website</li>
+          <li>Hosting included</li>
+          <li>Basic SEO setup</li>
+          <li>Contact / WhatsApp link</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Choose Starter</a>
+      </div>
+      <div class="price-card featured reveal">
+        <h3>Growth</h3>
+        <div class="price mono">₹15,000</div>
+        <ul>
+          <li>Multi-page website</li>
+          <li>Hosting &amp; maintenance</li>
+          <li>Local SEO &amp; Google listing setup</li>
+          <li>Booking or order form</li>
+          <li>Monthly check-in</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Choose Growth</a>
+      </div>
+      <div class="price-card reveal">
+        <h3>Custom</h3>
+        <div class="price mono">Based on need</div>
+        <ul>
+          <li>Everything in Growth</li>
+          <li>Chat assistant / automation</li>
+          <li>Custom features &amp; integrations</li>
+          <li>Priced per client requirement</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-section reveal">
+      <h2>Ready to put your shop online?</h2>
+      <p>Tell us about your shop and we'll put together a free mockup — no commitment needed.</p>
+      <div class="cta-buttons">
+        <a href="mailto:hello@dukaandigital.example" class="btn btn-primary">Email us</a>
+        <a href="#" class="btn btn-ghost">Call to book a demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo"><span class="logo-mark">DD</span>Dukaan Digital</div>
+    <span class="fine">© 2026 Dukaan Digital — Websites, hosting &amp; SEO for local vendors.</span>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

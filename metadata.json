@@ -1,0 +1,6 @@
+{
+  "name": "Dukaan Digital",
+  "description": "Websites, hosting & local SEO for vendors and local businesses.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
